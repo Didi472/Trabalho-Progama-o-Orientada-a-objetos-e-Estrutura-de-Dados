@@ -1,0 +1,188 @@
+1.
+def gerar_tabuada():
+    # Solicita ao usuário para inserir um número entre 1 e 10
+    while True:
+        try:
+            numero = int(input("Digite um número inteiro entre 1 e 10 para ver a tabuada: "))
+            if 1 <= numero <= 10:
+                break
+            else:
+                print("Por favor, insira um número válido entre 1 e 10.")
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número inteiro.")
+
+    print(f"Tabuada de {numero}:")
+    for i in range(1, 11):
+        resultado = numero * i
+        print(f"{numero} X {i} = {resultado}")
+
+gerar_tabuada()
+
+2.
+ def contar_pares_impares():
+    quantidade_pares = 0
+    quantidade_impares = 0
+    
+    for i in range(10):
+        while True:
+            try:
+                numero = int(input(f"Digite o {i + 1}° número inteiro: "))
+                break
+            except ValueError:
+                print("Entrada inválida. Por favor, insira um número inteiro.")
+        
+        if numero % 2 == 0:
+            quantidade_pares += 1
+        else:
+            quantidade_impares += 1
+
+    print(f"Quantidade de números pares: {quantidade_pares}")
+    print(f"Quantidade de números ímpares: {quantidade_impares}")
+
+contar_pares_impares()
+
+3.
+def verifica_numero_primo(numero):
+    if numero < 2:
+        return False 
+    for i in range(2, numero):
+        if numero % i == 0:
+            return False  
+    return True
+
+def obter_numero():
+    while True:
+        try:
+            numero = int(input("Digite um número inteiro: "))
+            return numero
+        except ValueError:
+            print("Entrada inválida. Por favor, insira um número inteiro.")
+
+def main():
+    numero = obter_numero()
+    
+    if verifica_numero_primo(numero):
+        print(f"{numero} é um número primo.")
+    else:
+        print(f"{numero} não é um número primo.")
+
+main()
+
+4. 
+def calcular_anos_para_ultrapassagem(populacao_a, populacao_b, taxa_crescimento_a, taxa_crescimento_b):
+    anos = 0  
+
+    while populacao_a < populacao_b:
+        populacao_a += populacao_a * taxa_crescimento_a  
+        populacao_b += populacao_b * taxa_crescimento_b  
+        anos += 1  
+    return anos
+
+populacao_a = 80000  # População do país A
+populacao_b = 200000  # População do país B
+taxa_crescimento_a = 0.03  # Taxa de crescimento do país A
+taxa_crescimento_b = 0.015  # Taxa de crescimento do país B
+
+anos_necessarios = calcular_anos_para_ultrapassagem(populacao_a, populacao_b, taxa_crescimento_a, taxa_crescimento_b)
+print(f"A população do país A ultrapassará ou igualará a do país B em {anos_necessarios} anos.")
+
+5.
+def criar_tabela_precos():
+    tabela = {}
+    for quantidade in range(1, 51):  
+        tabela[quantidade] = quantidade * 1.99  
+    return tabela
+
+def mostrar_tabela(tabela):
+    print("Tabela de Preços:")
+    for quantidade, preco in tabela.items():
+        print(f'{quantidade} itens: R$ {preco:.2f}')  
+
+tabela_precos = criar_tabela_precos()
+
+mostrar_tabela(tabela_precos)
+
+try:
+    quantidade_itens = int(input('Informe a quantidade de itens (1 a 50): '))
+    if quantidade_itens in tabela_precos:
+        print(f'O valor total para {quantidade_itens} itens é: R$ {tabela_precos[quantidade_itens]:.2f}')
+    else:
+        print('Quantidade de itens fora do limite da tabela. (1 a 50)')
+except ValueError:
+    print('Por favor, insira um número válido.')
+
+6. 
+salario = 1000.00
+
+percentual_aumento = 1.5 / 100  
+
+for ano in range(1996, 2026):
+    aumento = salario * percentual_aumento
+    salario += aumento
+
+    percentual_aumento *= 2
+
+print(f"O salário do funcionário em 2025 é: R$ {salario:.2f}")
+
+7.
+def calcular_divida(valor_divida):
+    parcelas_juros = [
+        (1, 0),
+        (3, 10),
+        (6, 15),
+        (9, 20),
+        (12, 25)
+    ]
+
+    print("| Dívida        | Juros | Quantidade de Parcelas | Valor da Parcela |")
+    print("|---------------|-------|------------------------|------------------|")
+    
+    for parcelas, juros in parcelas_juros:
+        valor_juros = valor_divida * (juros / 100)
+        valor_total = valor_divida + valor_juros
+        valor_parcela = valor_total / parcelas
+        print(f"| R$ {valor_total:9.2f} | {valor_juros:5.2f} | {parcelas:22} | R$ {valor_parcela:14.2f} |")
+
+valor_divida = float(input('Informe o valor da dívida: '))
+calcular_divida(valor_divida)
+
+8.
+def verificar_respostas(respostas_aluno):
+    gabarito = ['A', 'B', 'C', 'D', 'E', 'E', 'D', 'C', 'B', 'A']
+    acertos = sum(1 for i in range(10) if respostas_aluno[i].upper() == gabarito[i])
+    return acertos
+
+def main():
+    total_alunos = 0
+    todas_as_notas = []
+    
+    while True:
+        total_alunos += 1
+        print(f"\nAluno {total_alunos}:")
+        
+        respostas_aluno = []
+        for i in range(1, 11):
+            resposta = input(f"Digite a resposta da questão {i} (A, B, C, D, E): ")
+            respostas_aluno.append(resposta)
+
+        acertos = verificar_respostas(respostas_aluno)
+        todas_as_notas.append(acertos)
+        print(f"Total de acertos do Aluno {total_alunos}: {acertos}")
+        
+        continuar = input("Outro aluno vai utilizar o sistema? (s/n): ").strip().lower()
+        if continuar != 's':
+            break
+
+    if todas_as_notas:
+        maior_acerto = max(todas_as_notas)
+        menor_acerto = min(todas_as_notas)
+        media_notas = sum(todas_as_notas) / len(todas_as_notas)
+
+        print(f"\nResultados Finais:")
+        print(f"Maior Acerto: {maior_acerto}")
+        print(f"Menor Acerto: {menor_acerto}")
+        print(f"Total de Alunos: {total_alunos}")
+        print(f"Média das Notas da Turma: {media_notas:.2f}")
+
+if __name__ == "__main__":
+    main()
