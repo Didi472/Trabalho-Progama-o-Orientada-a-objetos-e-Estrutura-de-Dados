@@ -42,31 +42,22 @@ gerar_tabuada()
 contar_pares_impares()
 
 3.
-def verifica_numero_primo(numero):
-    if numero < 2:
-        return False 
-    for i in range(2, numero):
-        if numero % i == 0:
-            return False  
-    return True
+numero = int(input("Digite um número inteiro: "))
 
-def obter_numero():
-    while True:
-        try:
-            numero = int(input("Digite um número inteiro: "))
-            return numero
-        except ValueError:
-            print("Entrada inválida. Por favor, insira um número inteiro.")
-
-def main():
-    numero = obter_numero()
+if numero <= 1:
+    print(f"{numero} não é um número primo.")
+else:
+    eh_primo = True
     
-    if verifica_numero_primo(numero):
+    for i in range(2, int(numero**0.5) + 1):
+        if numero % i == 0:
+            eh_primo = False
+            break
+
+    if eh_primo:
         print(f"{numero} é um número primo.")
     else:
         print(f"{numero} não é um número primo.")
-
-main()
 
 4. 
 def calcular_anos_para_ultrapassagem(populacao_a, populacao_b, taxa_crescimento_a, taxa_crescimento_b):
